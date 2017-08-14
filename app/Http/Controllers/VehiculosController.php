@@ -81,4 +81,50 @@ class VehiculosController extends Controller
         return ResponseController::response(ResponseController::$error_codes['OK']);
     }
 
+    public function update(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|integer|min:1',
+            'placa' => 'required|max:45',
+            'color' => 'required|max:45',
+            'propietario' => 'required|integer|min:1',
+        ]);
+
+        if($validator->fails()){
+            ResponseController::$response['errors'] = true;
+            ResponseController::$response['messagess'][] = $validator->errors()->toArray();
+            return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
+        }
+
+        $propietario = Propietario::find($request->propietario);
+        if(!$propietario){
+            ResponseController::$response['errors'] = true;
+            ResponseController::$response['messagess'][] = 'propietario no valido';
+            return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
+        }
+
+        $vehiculo = Vehiculo::find($request->id);
+        if(!$vehiculo){
+            ResponseController::$response['errors'] = true;
+            ResponseController::$response['messagess'][] = 'el registro no existe';
+            return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
+        }
+
+        try {
+            if (!$vehiculo->update($request->all())) {
+                ResponseController::$response['errors'] = true;
+                ResponseController::$response['messagess'][] = 'error actualizando el registro';
+                return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
+            }
+        }catch (\Exception $e){
+            ResponseController::$response['errors'] = true;
+            ResponseController::$response['messagess'][] = 'error actualizando el registro';
+            ResponseController::$response['messagess'][] = $e->getMessage();
+            return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
+        }
+
+        ResponseController::$response['messagess'][] = 'registro actualizado';
+        return ResponseController::response(ResponseController::$error_codes['OK']);
+    }
+
 }
