@@ -16,3 +16,19 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => 'propietarios'], function(){
+    Route::post('/', [
+        'uses' => 'PropietariosController@create'
+    ]);
+    Route::get('/', [
+        'uses' => 'PropietariosController@get_all'
+    ]);
+    Route::put('/', [
+        'uses' => 'PropietariosController@update'
+    ]);
+    Route::delete('/', [
+        'uses' => 'PropietariosController@delete'
+    ]);
+});
+
