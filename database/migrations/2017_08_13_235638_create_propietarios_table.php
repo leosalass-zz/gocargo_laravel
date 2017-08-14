@@ -15,6 +15,13 @@ class CreatePropietariosTable extends Migration
     {
         Schema::create('propietarios', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->string('cedula', 45)->unique();
+            $table->string('nombres', 45);
+            $table->string('apellidos', 45);
+            $table->string('ciudad', 45);
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
