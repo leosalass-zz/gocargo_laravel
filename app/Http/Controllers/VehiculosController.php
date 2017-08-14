@@ -127,4 +127,40 @@ class VehiculosController extends Controller
         return ResponseController::response(ResponseController::$error_codes['OK']);
     }
 
+    public function delete(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|integer|min:1',
+        ]);
+
+        if($validator->fails()){
+            ResponseController::$response['errors'] = true;
+            ResponseController::$response['messagess'][] = $validator->errors()->toArray();
+            return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
+        }
+
+        $vehiculo = Vehiculo::find($request->id);
+        if(!$vehiculo){
+            ResponseController::$response['errors'] = true;
+            ResponseController::$response['messagess'][] = 'id invalido';
+            return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
+        }
+
+        try {
+            if (!$vehiculo->delete()) {
+                ResponseController::$response['errors'] = true;
+                ResponseController::$response['messagess'][] = 'error eliminando el registro';
+                return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
+            }
+        }catch (\Exception $e){
+            ResponseController::$response['errors'] = true;
+            ResponseController::$response['messagess'][] = 'error eliminando el registro';
+            ResponseController::$response['messagess'][] = $e->getMessage();
+            return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
+        }
+
+        ResponseController::$response['messagess'][] = 'registro eliminado';
+        return ResponseController::response(ResponseController::$error_codes['OK']);
+    }
+
 }
