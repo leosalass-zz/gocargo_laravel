@@ -64,4 +64,21 @@ class VehiculosController extends Controller
             return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
         }
     }
+
+    public function get_all(){
+
+        $vehiculos = [];
+        foreach (Vehiculo::all() as $vehiculo){
+            $vehiculos[$vehiculo->id] = $vehiculo;
+        }
+
+        if(!count($vehiculos)){
+            ResponseController::$response['messagess'][] = 'no existen vehiculos registrados';
+        }
+
+        ResponseController::$response['success'] = true;
+        ResponseController::$response['data'] = $vehiculos;
+        return ResponseController::response(ResponseController::$error_codes['OK']);
+    }
+
 }

@@ -30,6 +30,11 @@ Route::group(['prefix' => 'propietarios'], function(){
     Route::delete('/', [
         'uses' => 'PropietariosController@delete'
     ]);
+
+
+    Route::post('/vehiculos', [
+        'uses' => 'PropietariosController@get_vehicles'
+    ]);
 });
 
 Route::group(['prefix' => 'vehiculos'], function(){
