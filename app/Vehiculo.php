@@ -22,4 +22,9 @@ class Vehiculo extends Model
      * @var array
      */
     protected $fillable = ['placa', 'color', 'propietario'];
+
+    public function propietario()
+    {
+        return $this->belongsTo('App\Propietario', 'propietario', 'id');
+    }
 }

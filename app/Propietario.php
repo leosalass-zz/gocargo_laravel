@@ -22,4 +22,8 @@ class Propietario extends Model
      * @var array
      */
     protected $fillable = ['cedula', 'nombres', 'apellidos', 'ciudad'];
+
+    public function vehiculos(){
+        return $this->hasMany('App\Vehiculo', 'propietario', 'id');
+    }
 }
