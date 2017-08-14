@@ -148,4 +148,33 @@ class PropietariosController extends Controller
         ResponseController::$response['messagess'][] = 'registro eliminado';
         return ResponseController::response(ResponseController::$error_codes['OK']);
     }
+
+    public function get_vehicles(Request $request){
+        $validator = Validator::make($request->all(), [
+            'propietario' => 'required|integer|min:1',
+        ]);
+
+        if($validator->fails()){
+            ResponseController::$response['errors'] = true;
+            ResponseController::$response['messagess'][] = $validator->errors()->toArray();
+            return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
+        }
+
+        $propietario = Propietario::find($request->propietario);
+        if(!$propietario){
+            ResponseController::$response['errors'] = true;
+            ResponseController::$response['messagess'][] = 'propietario no valido';
+            return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
+        }
+
+        $vehiculos = $propietario->vehiculos;
+
+        if(!count($vehiculos)){
+            ResponseController::$response['messagess'][] = 'el propietario no tiene vehiculos registrados';
+        }
+
+        ResponseController::$response['data']['vehiculos'] = $vehiculos;
+
+        return ResponseController::response(ResponseController::$error_codes['OK']);
+    }
 }
