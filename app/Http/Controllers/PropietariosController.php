@@ -36,7 +36,7 @@ class PropietariosController extends Controller
 
             return ResponseController::response(ResponseController::$error_codes['BAD REQUEST']);
         }
-        die;
+
         try {
             if (!$object = Propietario::create($request->all())) {
                 ResponseController::$response['errors'] = true;
