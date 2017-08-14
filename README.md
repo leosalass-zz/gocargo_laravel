@@ -62,7 +62,7 @@ Route: /api/vehiculos
 Method: GET  
 
 ##### Listar vehiculos de un propietario
-/api/vehiculos  
+/api/propietarios/vehiculos  
 Method: PUT  
 Params: [  
             'propietario' => 'required|integer|min:1',  
