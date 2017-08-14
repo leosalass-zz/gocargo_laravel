@@ -77,10 +77,10 @@ class PropietariosController extends Controller
 
         $validator = Validator::make($request->all(), [
             'id' => 'required|integer|min:1',
-            'cedula' => 'required|max:45',
-            'nombres' => 'required|max:45',
-            'apellidos' => 'required|max:45',
-            'ciudad' => 'required|max:45',
+            'cedula' => 'max:45',
+            'nombres' => 'max:45',
+            'apellidos' => 'max:45',
+            'ciudad' => 'max:45',
         ]);
 
         if($validator->fails()){
