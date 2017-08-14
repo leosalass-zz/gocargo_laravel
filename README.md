@@ -84,3 +84,7 @@ Method: DELETE
 Params: [  
             'id' => 'required|integer|min:1',  
 ]  
+
+
+##contacto
+para mejoras y soporte personalizado me pueden contactar al correo leosalass@gmail.com
