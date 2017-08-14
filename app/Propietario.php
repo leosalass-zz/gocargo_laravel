@@ -14,7 +14,7 @@ class Propietario extends Model
      *
      * @var string
      */
-    protected $table = 'propietqarios';
+    protected $table = 'propietarios';
 
     /**
      * The attributes that are mass assignable.
