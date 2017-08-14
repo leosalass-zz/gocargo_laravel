@@ -11,6 +11,9 @@ vagrant up
 
 ## end-points
 
+### URL publica
+http://gocargo-laravel.unitycolombia.com/
+
 ### Propietarios 
 
 #### Crear propietario
