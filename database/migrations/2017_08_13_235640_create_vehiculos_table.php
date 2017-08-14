@@ -18,12 +18,26 @@ class CreateVehiculosTable extends Migration
 
             $table->string('placa', 45);
             $table->string('color', 45);
-            $table->integer('propietario');
+            $table->integer('propietario')
+                ->unsigned()
+                ->nullable();
 
             $table->softDeletes();
             $table->timestamps();
+        });
 
-            $table->foreign('propietario')->references('id')->on('propietarios');
+        Schema::table('vehiculo', function(Blueprint $table) {
+            $table->foreign('propietario')
+                ->references('id')->on('propietarios')
+                //->onDelete('CASCADE')
+                //->onDelete('SET NULL')
+                //->onDelete('NO ACTION')
+                ->onDelete('RESTRICT')
+                //->onUpdate('CASCADE')
+                //->onUpdate('SET NULL')
+                //->onUpdate('NO ACTION')
+                ->onUpdate('RESTRICT')
+                ;
         });
     }
 
