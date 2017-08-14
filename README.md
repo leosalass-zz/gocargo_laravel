@@ -1,7 +1,7 @@
 # Propietarios y Vehiculos
 API desarrollada en laravel para crear propietarios y vehiculos.   
 
-Este proyecto incluye Homested para evitar errores de configuraciones, para utilizarlo es necesario tener Vagrant configurado.
+Este proyecto incluye Homested para evitar errores de configuraciones, para utilizarlo es necesario tener Vagrant configurado. para mayor informacion: https://laravel.com/docs/5.4/homestead
 
 ## configuraciones del dominio en el archivo hosts
 192.168.11.10	gocargo-la.app
