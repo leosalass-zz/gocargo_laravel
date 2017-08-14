@@ -3,8 +3,7 @@ API desarrollada en laravel para crear propietario y vehiculos.
 Este proyecto incluye Homested para evitar errores de configuraciones, para utilizarlo es necesario tener Vagrant configurado. Para iniciar la maquina debe ejecutar en el root del proyecto:
 
 
-## configuraciones del dominio
-agregar en su archivo hosts:
+## configuraciones del dominio en el archivo hosts
 192.168.11.10	gocargo-la.app
 
 ## levantar la maquina virtual
