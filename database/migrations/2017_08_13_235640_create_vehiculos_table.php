@@ -15,7 +15,15 @@ class CreateVehiculosTable extends Migration
     {
         Schema::create('vehiculo', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->string('placa', 45);
+            $table->string('color', 45);
+            $table->integer('propietario');
+
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('propietario')->references('id')->on('propietarios');
         });
     }
 
