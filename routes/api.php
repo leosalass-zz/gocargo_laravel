@@ -32,3 +32,18 @@ Route::group(['prefix' => 'propietarios'], function(){
     ]);
 });
 
+Route::group(['prefix' => 'vehiculos'], function(){
+    Route::post('/', [
+        'uses' => 'VehiculosController@create'
+    ]);
+    Route::get('/', [
+        'uses' => 'VehiculosController@get_all'
+    ]);
+    Route::put('/', [
+        'uses' => 'VehiculosController@update'
+    ]);
+    Route::delete('/', [
+        'uses' => 'VehiculosController@delete'
+    ]);
+});
+
