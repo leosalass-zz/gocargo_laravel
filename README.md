@@ -1,5 +1,5 @@
 # Propietarios y Vehiculos
-API desarrollada en laravel para crear propietario y vehiculos.   
+API desarrollada en laravel para crear propietarios y vehiculos.   
 
 Este proyecto incluye Homested para evitar errores de configuraciones, para utilizarlo es necesario tener Vagrant configurado.
 
